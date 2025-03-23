@@ -12,7 +12,7 @@
 #   - Buzzer
 
 # Import necessary libraries
-from time import sleep
+import time
 import RPi.GPIO as GPIO
 
 # Set up GPIO pins
@@ -58,7 +58,7 @@ def arm_system(channel):
 # Function to check the ultrasonic sensor
 def check_ultrasonic():
     GPIO.output(TRIG, True)
-    sleep(0.00001)
+    time.sleep(0.00001)
     GPIO.output(TRIG, False)
     while GPIO.input(ECHO) == 0:
         pulse_start = time.time()
@@ -79,9 +79,9 @@ def check_light():
 # Function to sound the alarm
 def sound_alarm():
     GPIO.output(BUZZER, True)
-    sleep(1)
+    time.sleep(1)
     GPIO.output(BUZZER, False)
-    sleep(1)
+    time.sleep(1)
 
 # Add event detection for the button
 GPIO.add_event_detect(BUTTON, GPIO.FALLING, callback=arm_system, bouncetime=200)
@@ -98,7 +98,7 @@ while True:
                 sound_alarm()
     else:
         alarm = False
-    sleep(0.1)
+    time.sleep(0.1)
 
 # Clean up GPIO pins
 GPIO.cleanup()
