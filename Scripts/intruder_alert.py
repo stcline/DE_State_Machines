@@ -45,15 +45,16 @@ GPIO.setup(BUZZER, GPIO.OUT)
 armed = False
 alarm = False
 
-# Function to arm the system
-def arm_system(channel):
+#TODO - Fix this code in this function
+# Function to arm the system using the button
+def arm_system():
     global armed
-    if armed:
-        armed = False
-        print("System disarmed")
-    else:
-        armed = True
-        print("System armed")
+    if BUTTON == 0:
+        armed = not armed
+        if armed:
+            print("System armed")
+        else:
+            print("System disarmed")
 
 # Function to check the ultrasonic sensor
 def check_ultrasonic():
@@ -84,21 +85,25 @@ def sound_alarm():
     time.sleep(1)
 
 # Add event detection for the button
-GPIO.add_event_detect(BUTTON, GPIO.FALLING, callback=arm_system, bouncetime=200)
+# This is a more advance method of detecting button presses.  If you want to teach this, uncomment the code below and omit the code for the while loop which checks if the button is pressed.
+# GPIO.add_event_detect(BUTTON, GPIO.FALLING, callback=arm_system, bouncetime=200)
 
 # Main loop
 while True:
-    if armed:
-        distance = check_ultrasonic()
-        sound = check_sound()
-        light = check_light()
-        if distance < 100 or sound or light:
-            if not alarm:
-                alarm = True
-                sound_alarm()
-    else:
-        alarm = False
-    time.sleep(0.1)
+    # Omit this code if you are using the event detection method for the button
+    if GPIO.input(BUTTON) == 0: # Check if the button is pressed
+        arm_system(0) # Call the arm_system function
+        if armed:
+            distance = check_ultrasonic()
+            sound = check_sound()
+            light = check_light()
+            if distance < 100 or sound or light:
+                if not alarm:
+                    alarm = True
+                    sound_alarm()
+        else:
+            alarm = False
+        time.sleep(0.1)
 
 # Clean up GPIO pins
 GPIO.cleanup()
