@@ -7,7 +7,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 # Set up pins for the light sensor
-LIGHT = 27
+LIGHT = 18
 GPIO.setup(LIGHT, GPIO.IN)
 
 # Function to check the light sensor
