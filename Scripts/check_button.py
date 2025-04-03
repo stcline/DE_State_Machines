@@ -16,4 +16,4 @@ def check_button():
 
 while True:
     print(check_button())
-    time.sleep(1)
+    time.sleep(.2)
