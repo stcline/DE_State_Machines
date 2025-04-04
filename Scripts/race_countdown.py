@@ -49,11 +49,11 @@ GPIO.output(RED, GPIO.HIGH)  # Turn on red LED
 # Wait for a random delay between 0 and 5 seconds
 delay = random.randint(0, 5)
 # Start moving the servo arn for 12 seconds
-move_servo(0, 72, 12)
+move_servo(90, 18, 12)
 GPIO.output(RED, GPIO.LOW)  # Turn off red LED
 GPIO.output(YELLOW, GPIO.HIGH)  # Turn on yellow LED
 # Move the servo arm for 3 seconds
-move_servo(72, 90, 3)
+move_servo(18, 0, 3)
 GPIO.output(YELLOW, GPIO.LOW)  # Turn off yellow LED
 GPIO.output(GREEN, GPIO.HIGH)  # Turn on green LED
 print("GO!")  # Print "GO!" to the console    
