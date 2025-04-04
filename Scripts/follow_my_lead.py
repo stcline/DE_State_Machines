@@ -75,9 +75,17 @@ def generate_random_number():
 while True:
     # Generate a random number to determine the action
     action = generate_random_number()
+    actions = {
+        1: "Push the button",
+        2: "Turn the potentiometer",
+        3: "Shine light on the sensor",
+        4: "Move in front of the motion sensor",
+        5: "Put an object in front of the ultrasonic sensor"
+    }
     
     # Print the action for debugging purposes
-    print(f"Action: {action}")
+    print(f"Action: {actions[action]}")
+    # Wait for the user to perform the action
     
     # Perform the action based on the random number
     if action == 1:
@@ -109,7 +117,7 @@ while True:
         while check_distance() > 0.2:  # Adjust distance threshold as needed
             time.sleep(0.1)
         print("Ultrasonic sensor triggered!")
-        
+
     else:
         print("Invalid action!")
         # end the script if invalid action is generated
