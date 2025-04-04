@@ -84,10 +84,11 @@ while True:
     }
     
     # Print the action for debugging purposes
+    print("Perform the action and press Enter...")
     print(f"Action: {actions[action]}")
     # Wait for the user to perform the action
+    input("Press Enter when you are ready...")
     
-    # Perform the action based on the random number 
     # If the action is valid, print "Correct!" and continue the game
     # If the user activates the wrong sensor, print "Incorrect!" and break the loop
     if action == 1:
