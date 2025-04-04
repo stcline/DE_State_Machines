@@ -7,7 +7,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 # Set up pins for the sound sensor
-SOUND = 17
+SOUND = 27
 GPIO.setup(SOUND, GPIO.IN)
 
 # Function to check the sound sensor
