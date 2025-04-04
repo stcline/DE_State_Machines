@@ -119,7 +119,7 @@ while True:
             break
 
     elif action == 5:
-        if check_distance() < 0.5:
+        if check_distance() < 0.25:
             print("Correct!")
         elif check_button() == 0 or check_pot() == 1 or check_light() == 1 or check_motion() == 1:
             print("Incorrect!")
