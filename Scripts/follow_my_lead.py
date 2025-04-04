@@ -91,36 +91,39 @@ while True:
     # If the action is valid, print "Correct!" and continue the game
     # If the user activates the wrong sensor, print "Incorrect!" and break the loop
     if action == 1:
-        while not check_button():
-            time.sleep(0.1)
-        print("Correct!")
-        
+        if check_button() == 0:
+            print("Correct!")
+        elif check_pot() == 1 or check_light() == 1 or check_motion() == 1 or check_distance() < 0.5:
+            print("Incorrect!")
+            break
+
     elif action == 2:
-        while not check_pot():
-            time.sleep(0.1)
-        print("Correct!")
-        
+        if check_pot() == 1:
+            print("Correct!")
+        elif check_button() == 0 or check_light() == 1 or check_motion() == 1 or check_distance() < 0.5:
+            print("Incorrect!")
+            break
+
     elif action == 3:
-        while not check_light():
-            time.sleep(0.1)
-        print("Correct!")
-        
+        if check_light() == 1:
+            print("Correct!")
+        elif check_button() == 0 or check_pot() == 1 or check_motion() == 1 or check_distance() < 0.5:
+            print("Incorrect!")
+            break
+
     elif action == 4:
-        while not check_motion():
-            time.sleep(0.1)
-        print("Correct!")
-        
+        if check_motion() == 1:
+            print("Correct!")
+        elif check_button() == 0 or check_pot() == 1 or check_light() == 1 or check_distance() < 0.5:
+            print("Incorrect!")
+            break
+
     elif action == 5:
-        while check_distance() > 0.5:  # Adjust distance threshold as needed
-            time.sleep(0.1)
-        print("Correct!")
-    
-    else:
-        print("Incorrect! Game Over.")
-        break
-    
-    # Print the action for debugging purposes
-    # print(f"Action: {actions[action]}")
+        if check_distance() < 0.5:
+            print("Correct!")
+        elif check_button() == 0 or check_pot() == 1 or check_light() == 1 or check_motion() == 1:
+            print("Incorrect!")
+            break   
 
 
     # Add a small delay to avoid rapid looping
