@@ -87,49 +87,41 @@ while True:
     print(f"Action: {actions[action]}")
     # Wait for the user to perform the action
     
-    # Perform the action based on the random number if the action is valid, print "Correct!" and continue the game
-    # Otherwise, print "Incorrect!" and break the loop
+    # Perform the action based on the random number 
+    # If the action is valid, print "Correct!" and continue the game
+    # If the user activates the wrong sensor, print "Incorrect!" and break the loop
     if action == 1:
-        while True:
-            if check_button() == GPIO.LOW:
-                print("Correct!")
-                break
-            else:
-                print("Incorrect!")
-                break
+        while not check_button():
+            time.sleep(0.1)
+        print("Correct!")
+        
     elif action == 2:
-        while True:
-            if check_pot() == GPIO.HIGH:
-                print("Correct!")
-                break
-            else:
-                print("Incorrect!")
-                break
+        while not check_pot():
+            time.sleep(0.1)
+        print("Correct!")
+        
     elif action == 3:
-        while True:
-            if check_light() == GPIO.HIGH:
-                print("Correct!")
-                break
-            else:
-                print("Incorrect!")
-                break
+        while not check_light():
+            time.sleep(0.1)
+        print("Correct!")
+        
     elif action == 4:
-        while True:
-            if check_motion() == GPIO.HIGH:
-                print("Correct!")
-                break
-            else:
-                print("Incorrect!")
-                break
+        while not check_motion():
+            time.sleep(0.1)
+        print("Correct!")
+        
     elif action == 5:
-        while True:
-            distance = check_distance()
-            if distance < 0.5:  # Adjust the threshold as needed
-                print("Correct!")
-                break
-            else:
-                print("Incorrect!")
-                break
+        while check_distance() > 0.5:  # Adjust distance threshold as needed
+            time.sleep(0.1)
+        print("Correct!")
+    
+    else:
+        print("Incorrect! Game Over.")
+        break
+    
+    # Print the action for debugging purposes
+    # print(f"Action: {actions[action]}")
+
 
     # Add a small delay to avoid rapid looping
     time.sleep(1)
