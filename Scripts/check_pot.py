@@ -13,3 +13,7 @@ GPIO.setup(POT_PIN, GPIO.IN)
 # Function to check the potentiometer
 def check_pot():
     return GPIO.input(POT_PIN)
+
+while True:
+    print(check_pot())
+    time.sleep(.2)

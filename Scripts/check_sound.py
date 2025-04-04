@@ -16,4 +16,4 @@ def check_sound():
 
 while True:
     print(check_sound())
-    time.sleep(1)
+    time.sleep(.2)
