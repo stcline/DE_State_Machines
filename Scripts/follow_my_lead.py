@@ -87,42 +87,50 @@ while True:
     print(f"Action: {actions[action]}")
     # Wait for the user to perform the action
     
-    # Perform the action based on the random number
+    # Perform the action based on the random number if the action is valid, print "Correct!" and continue the game
+    # Otherwise, print "Incorrect!" and break the loop
     if action == 1:
-        print("Push the button!")
-        while not check_button():
-            time.sleep(0.1)
-        print("Button pushed!")
-        
+        while True:
+            if check_button() == GPIO.LOW:
+                print("Correct!")
+                break
+            else:
+                print("Incorrect!")
+                break
     elif action == 2:
-        print("Turn the potentiometer!")
-        while not check_pot():
-            time.sleep(0.1)
-        print("Potentiometer turned!")
-        
+        while True:
+            if check_pot() == GPIO.HIGH:
+                print("Correct!")
+                break
+            else:
+                print("Incorrect!")
+                break
     elif action == 3:
-        print("Shine light on the sensor!")
-        while not check_light():
-            time.sleep(0.1)
-        print("Light sensor triggered!")
-        
+        while True:
+            if check_light() == GPIO.HIGH:
+                print("Correct!")
+                break
+            else:
+                print("Incorrect!")
+                break
     elif action == 4:
-        print("Move in front of the motion sensor!")
-        while not check_motion():
-            time.sleep(0.1)
-        print("Motion sensor triggered!")
-        
+        while True:
+            if check_motion() == GPIO.HIGH:
+                print("Correct!")
+                break
+            else:
+                print("Incorrect!")
+                break
     elif action == 5:
-        print("Put an object in front of the ultrasonic sensor!")
-        while check_distance() > 0.2:  # Adjust distance threshold as needed
-            time.sleep(0.1)
-        print("Ultrasonic sensor triggered!")
-
-    else:
-        print("Invalid action!")
-        # end the script if invalid action is generated
-        break
+        while True:
+            distance = check_distance()
+            if distance < 0.5:  # Adjust the threshold as needed
+                print("Correct!")
+                break
+            else:
+                print("Incorrect!")
+                break
 
     # Add a small delay to avoid rapid looping
-    time.sleep(0.2)
+    time.sleep(1)
     
