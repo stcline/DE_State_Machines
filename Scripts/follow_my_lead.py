@@ -13,6 +13,10 @@ import time
 import RPi.GPIO as GPIO
 from gpiozero import DistanceSensor
 import random
+import warnings
+
+# Suppress warnings
+warnings.filterwarnings('ignore')
 
 # Set up GPIO pins
 GPIO.setmode(GPIO.BCM)
@@ -88,7 +92,7 @@ while True:
     print(f"Action: {actions[action]}")
     # Wait for the user to perform the action
     input("Press Enter when you are ready...")
-    
+
     # If the action is valid, print "Correct!" and continue the game
     # If the user activates the wrong sensor, print "Incorrect!" and break the loop
     if action == 1:
