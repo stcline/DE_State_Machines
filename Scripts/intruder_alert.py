@@ -11,7 +11,6 @@
 #   - Button
 #   - Buzzer
 
-
 # Import necessary libraries
 import time
 import RPi.GPIO as GPIO
